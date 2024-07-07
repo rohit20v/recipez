@@ -1,0 +1,12 @@
+<main>
+  <div class="login-page">
+    <div class="form">
+      <form [formGroup]="formData" class="login-form" (submit)="userSignIn()">
+        <input formControlName="email" type="email" placeholder="username" required/>
+        <input formControlName="password" type="password" placeholder="password" required/>
+        <button type="submit">Register</button>
+        <p class="message">Already registered? <a routerLink="/login">Login</a></p>
+      </form>
+    </div>
+  </div>
+</main>
