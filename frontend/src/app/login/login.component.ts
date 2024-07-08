@@ -1,12 +1,13 @@
 import {Component} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    RouterLink, ReactiveFormsModule
+    RouterLink, ReactiveFormsModule, HttpClientModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -17,12 +18,27 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required])
   })
 
-  mail = 'example@example.com'
-  pass = '123456789'
+
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   userLogin() {
-    if (this.formData.value.email === this.mail && this.formData.value.password === this.pass) {
-      alert("REAL USER LES GO")
+    if (this.formData.valid) {
+      const loginData = {
+        email: this.formData.value.email,
+        password: this.formData.value.password
+      };
+      this.http.post('http://localhost:3000/user/login', loginData).subscribe(
+        response => {
+          this.router.navigate(['/']);
+        },
+        error => {
+          console.error('Login error', error);
+          alert('Invalid email or password');
+        }
+      );
+    } else {
+      alert("Invalid email or password");
     }
   }
 }
