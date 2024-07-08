@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { RouterLink, Router } from "@angular/router";
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import {Component} from '@angular/core';
+import {Router, RouterLink} from "@angular/router";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-sign-in',
@@ -22,13 +22,14 @@ export class SignInComponent {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   userSignIn() {
     if (this.formData.valid) {
       const userData = this.formData.value;
       this.http.post('http://localhost:3000/user', userData).subscribe(
-        response => {
+        _ => {
           this.router.navigate(['/login'])
         },
         error => {
