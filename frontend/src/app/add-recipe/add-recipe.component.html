@@ -1,0 +1,14 @@
+<main>
+  <div class="recipe-page">
+    <div class="recipe-form">
+      <form [formGroup]="formData" class="login-form" (submit)="addNewRecipe()">
+        <input formControlName="name" type="text" placeholder="Recipe name" required/>
+        <input formControlName="description" type="text" placeholder="Describe your recipe" required/>
+        <input formControlName="ingredients" type="text" placeholder="Flour, salt, water, etc..." required/>
+        <input formControlName="instructions" type="text" placeholder="Instructions..." required/>
+        <input formControlName="image" type="text" placeholder="Enter an image url of your dish"/>
+        <button type="submit">login</button>
+      </form>
+    </div>
+  </div>
+</main>
