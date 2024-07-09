@@ -5,9 +5,26 @@
         <li><a class="router" routerLink="/home">Recipez</a></li>
       </ul>
       <ul>
-        <li><a class="router">Add a recipe</a></li>
-        <li><a class="router" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>
-        <li><a class="router" routerLink="/sign-in" routerLinkActive="active" ariaCurrentWhenActive="page">Sign-in</a></li>
+        <li *ngIf="!authService.isLoggedIn">
+          <span data-tooltip="Login to add a recipe" data-placement="bottom">
+          <span style="color: deepskyblue" class="router">
+            Add a recipe
+          </span>
+          </span>
+        </li>
+        <li *ngIf="authService.isLoggedIn">
+          <a routerLinkActive="active" ariaCurrentWhenActive="page"
+             routerLink="/add-recipe" class="router">
+            Add a recipe
+          </a>
+        </li>
+        <!--        <li><a class="router" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>-->
+        <li *ngIf="!authService.isLoggedIn"><a class="router" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                               routerLink="/login">Login</a></li>
+        <li *ngIf="authService.isLoggedIn"><a class="router" routerLinkActive="active" ariaCurrentWhenActive="page"
+                                              (click)="authService.logout()">Logout</a></li>
+        <li *ngIf="!authService.isLoggedIn"><a class="router" routerLink="/sign-in" routerLinkActive="active"
+                                               ariaCurrentWhenActive="page">Sign-in</a></li>
       </ul>
     </nav>
   </header>
