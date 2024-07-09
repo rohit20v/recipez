@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {Router, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-login',
@@ -19,24 +20,18 @@ export class LoginComponent {
   })
 
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   userLogin() {
     if (this.formData.valid) {
-      const loginData = {
-        email: this.formData.value.email,
-        password: this.formData.value.password
-      };
-      this.http.post('http://localhost:3000/user/login', loginData).subscribe(
-        response => {
-          this.router.navigate(['/']);
-        },
-        error => {
-          console.error('Login error', error);
-          alert('Invalid email or password');
-        }
-      );
+      const {email, password} = this.formData.value;
+      try {
+        this.authService.login(email as string, password as string);
+
+      } catch (err) {
+        console.log(err)
+      }
     } else {
       alert("Invalid email or password");
     }
