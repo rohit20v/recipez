@@ -18,11 +18,15 @@
             Add a recipe
           </a>
         </li>
-        <!--        <li><a class="router" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</a></li>-->
         <li *ngIf="!authService.isLoggedIn"><a class="router" routerLinkActive="active" ariaCurrentWhenActive="page"
                                                routerLink="/login">Login</a></li>
-        <li *ngIf="authService.isLoggedIn"><a class="router" routerLinkActive="active" ariaCurrentWhenActive="page"
-                                              (click)="authService.logout()">Logout</a></li>
+        <li *ngIf="authService.isLoggedIn">
+          <span style="display: flex; justify-content: space-between; gap: 16px">
+          <a class="router" routerLinkActive="active" ariaCurrentWhenActive="page"
+             (click)="authService.logout()">Logout</a>
+          <a style="text-decoration: none; color: sandybrown; font-weight: bold" >{{ authService.getCurrentUsername }}</a>
+          </span>
+        </li>
         <li *ngIf="!authService.isLoggedIn"><a class="router" routerLink="/sign-in" routerLinkActive="active"
                                                ariaCurrentWhenActive="page">Sign-in</a></li>
       </ul>

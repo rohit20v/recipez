@@ -25,7 +25,10 @@ export class AuthService {
   get getCurrentUserId() {
     const currentUser = localStorage.getItem('currentUser');
     return currentUser ? JSON.parse(currentUser).user.id : null;
-
+  }
+  get getCurrentUsername() {
+    const currentUser = localStorage.getItem('currentUser');
+    return currentUser ? JSON.parse(currentUser).user.email : null;
   }
 
   logout() {

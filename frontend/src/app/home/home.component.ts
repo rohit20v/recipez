@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.recipeSub = this.http.get('http://localhost:3000/recipe/all').subscribe(
       (res: any) => {
         this.recipes = res.data
-        // console.log(res.data)
+        console.log(res.data)
       },
       err => {
         console.log(err)
