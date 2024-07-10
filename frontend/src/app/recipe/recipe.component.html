@@ -1,6 +1,9 @@
-<main style="display: flex">
-    <article style="max-width: 40%">
-      <header>{{name}} </header>
+<main>
+    <article>
+      <header>{{name}}
+
+        <a *ngIf="authService.getCurrentUserId===userId" style="font-size: medium; margin-left: 16px">remove</a>
+      </header>
       <img [src]=image [alt]=name>
       <footer>{{description}}</footer>
     </article>
