@@ -17,8 +17,8 @@ export const getAllRecipes = async (req: express.Request, res: express.Response)
 
 export const addNewRecipe = async (req: express.Request, res: express.Response) => {
     try{
-        const {userId, name, description, ingredients, instructions} = req.body;
-        if (!name || !userId || !description || !ingredients || !instructions) {
+        const {userId, name, description, ingredients, instructions, image} = req.body;
+        if (!name || !userId || !description || !ingredients || !instructions || !image) {
             return res.status(400).json({error: 'Missing input values'})
         }
         const newRecipe = await recipeClient.create({
