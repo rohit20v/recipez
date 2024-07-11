@@ -1,10 +1,11 @@
 <main>
-    <article>
-      <header>{{name}}
-
-        <a *ngIf="authService.getCurrentUserId===userId" style="font-size: medium; margin-left: 16px">remove</a>
-      </header>
-      <img [src]=image [alt]=name>
-      <footer>{{description}}</footer>
-    </article>
+  <article>
+    <header>
+      <span style="font-size: large; text-transform: capitalize;">{{ name }}</span>
+      <span (click)="removeRecipe()" *ngIf="authService.getCurrentUserId===userId"
+            style="font-size: medium; margin-left: 16px; color: #05b5ff; cursor: pointer">remove</span>
+    </header>
+    <img [src]=image [alt]=name>
+    <footer>{{ description }}</footer>
+  </article>
 </main>

@@ -1,7 +1,12 @@
-<main style=" margin-top: 32px;">
-  <div style="display:flex; gap: 16px;" *ngIf="recipes?.length;else def">
-    <app-recipe *ngFor="let recipe of recipes" [name]="recipe.name" [image]="recipe.image"
-                [description]="recipe.description" [userId]="recipe.userId" />
+<main style="margin-top: 32px;">
+  <div style="display: flex; flex-wrap: wrap; gap: 16px;" *ngIf="recipes?.length; else def">
+    <app-recipe *ngFor="let recipe of recipes"
+                [name]="recipe.name"
+                [image]="recipe.image"
+                [description]="recipe.description"
+                [userId]="recipe.userId"
+                [id]="recipe.id"
+                (recipeRemoved)="removeRecipeFromList($event)" />
   </div>
-  <ng-template #def> No recipe found</ng-template>
+  <ng-template #def>No recipe found</ng-template>
 </main>

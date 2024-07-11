@@ -13,7 +13,6 @@ import {Subscription} from "rxjs";
     HttpClientModule,
   ],
   templateUrl: './home.component.html',
-  // template: `<div>h</div>`,
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -40,4 +39,10 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.recipeSub.unsubscribe();
     }
   }
+
+  removeRecipeFromList(id: number) {
+    console.log(id)
+    this.recipes = this.recipes?.filter(recipe => recipe.id !== id);
+  }
+
 }

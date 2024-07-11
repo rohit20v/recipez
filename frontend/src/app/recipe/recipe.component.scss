@@ -4,8 +4,12 @@ article {
   flex-direction: column;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
   transition: 0.2s ease-in-out;
+
+  &:hover {
+    outline: solid dodgerblue;
+  }
 
   header {
     padding: 16px;
@@ -22,12 +26,36 @@ article {
     object-fit: cover;
     flex-shrink: 0;
     transition: 0.2s ease-in-out;
-    &:hover{
+
+    &:hover {
       transform: scale(1.06);
     }
   }
 
   footer {
+    padding: 16px;
     font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  article {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  article {
+    width: 100%;
+  }
+
+  header {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  footer {
+    padding: 12px;
+    font-size: 12px;
   }
 }

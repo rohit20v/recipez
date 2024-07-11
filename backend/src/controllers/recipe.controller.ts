@@ -29,3 +29,18 @@ export const addNewRecipe = async (req: express.Request, res: express.Response) 
         console.log(err)
     }
 }
+
+export const delRecipeById = async (req: express.Request, res: express.Response) => {
+    try{
+        const id = parseInt(req.params.id);
+        const removeRecipe = await recipeClient.delete({
+            where:{
+                id: id
+            }
+        })
+        res.status(200).json({data: removeRecipe})
+
+    }catch (err){
+        console.log(err)
+    }
+}
