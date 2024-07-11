@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {RecipeComponent} from "../recipe/recipe.component";
 import {CommonModule} from "@angular/common";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Subscription} from "rxjs";
+import {AuthService} from "../auth.service";
 
 @Component({
   selector: 'app-home',
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   recipes?: RecipeComponent[]
   recipeSub?: Subscription;
 
+  authService = inject(AuthService)
+
   constructor(private http: HttpClient,) {
   }
 
@@ -26,7 +29,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.recipeSub = this.http.get('http://localhost:3000/recipe/all').subscribe(
       (res: any) => {
         this.recipes = res.data
-        console.log(res.data)
       },
       err => {
         console.log(err)

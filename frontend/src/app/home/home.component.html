@@ -4,7 +4,8 @@
                 [name]="recipe.name"
                 [image]="recipe.image"
                 [description]="recipe.description"
-                [userId]="recipe.userId"
+                [recipeUserId]="recipe.userId"
+                [userId]="authService.getCurrentUserId"
                 [id]="recipe.id"
                 (recipeRemoved)="removeRecipeFromList($event)" />
   </div>
