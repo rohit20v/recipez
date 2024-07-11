@@ -2,10 +2,23 @@
   <article>
     <header>
       <span style="font-size: large; text-transform: capitalize;">{{ name }}</span>
-      <span (click)="removeRecipe()" *ngIf="authService.getCurrentUserId===userId"
+      <span (click)="removeRecipe()" *ngIf="authService.getCurrentUserId===recipeUserId"
             style="font-size: medium; margin-left: 16px; color: #05b5ff; cursor: pointer">remove</span>
     </header>
     <img [src]=image [alt]=name>
-    <footer>{{ description }}</footer>
+    <footer>
+      {{ description }}
+      <div style="cursor: pointer" (click)="updateFav()">
+        <span style="color:red" *ngIf="fav">
+            Unfav
+        </span>
+        <span >
+          <span style="color: yellow" *ngIf="!fav && userId">
+            Favorite
+          </span>
+
+        </span>
+      </div>
+    </footer>
   </article>
 </main>

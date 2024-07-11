@@ -15,6 +15,7 @@ model User {
   email    String   @unique
   password String
   recipes  Recipe[]
+  Fav      Fav[]
 }
 
 model Recipe {
@@ -26,4 +27,16 @@ model Recipe {
   ingredients  String
   instructions String
   image        String?
+  Fav          Fav[]
+}
+
+model Fav {
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  recipe     Recipe   @relation(fields: [recipeId], references: [id])
+  recipeId   Int
+  assignedAt DateTime @default(now())
+  isFav      Boolean  @default(false)
+
+  @@id([userId, recipeId])
 }

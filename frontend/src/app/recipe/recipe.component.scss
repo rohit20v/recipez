@@ -33,6 +33,8 @@ article {
   }
 
   footer {
+    display: flex;
+    justify-content: space-between;
     padding: 16px;
     font-size: 14px;
   }
