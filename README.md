@@ -8,7 +8,10 @@
 - Angular (TypeScript)
 
 ## Description
-This web app is built using Prisma for database management, SQLite as the database, Express with TypeScript for the backend, and Angular with TypeScript for the frontend.
+Recipez is a web app built using Prisma for database management, SQLite as the database, Express with TypeScript for the backend, and Angular with TypeScript for the frontend. It provides a user-friendly platform for sharing and discovering a wide variety of recipes.
+
+<hr/>
+
 
 ## Instructions ⚙️
 1. Use `git clone` to clone the repo and open it in your favorite IDE.
@@ -20,4 +23,4 @@ This web app is built using Prisma for database management, SQLite as the databa
    - Start the frontend using `ng serve`.
 
 > [!TIP]
-> Have 2 terminals open, one for the backend and the other for the frontend.
+> It's recommended to have 2 terminals open, one for the backend and the other for the frontend.
