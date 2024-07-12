@@ -1,13 +1,12 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterModule} from "@angular/router";
 import {Subscription} from "rxjs";
-import {AsyncPipe} from "@angular/common";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-detail',
   standalone: true,
-  imports: [RouterModule, AsyncPipe],
+  imports: [RouterModule, HttpClientModule],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss'
 })
