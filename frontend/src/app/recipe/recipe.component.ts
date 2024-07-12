@@ -1,20 +1,22 @@
-import {Component, EventEmitter, inject, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {AuthService} from "../auth.service";
 import {HttpClient} from "@angular/common/http";
 import {Subscription} from "rxjs";
 import {environment} from "../../environments/environment";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-recipe',
   standalone: true,
   imports: [
     NgIf,
+    RouterLink,
   ],
   templateUrl: './recipe.component.html',
   styleUrl: './recipe.component.scss'
 })
-export class RecipeComponent implements OnInit {
+export class RecipeComponent {
 
   authService = inject(AuthService);
   @Input() userId?: number
@@ -25,17 +27,11 @@ export class RecipeComponent implements OnInit {
   @Input() image = "NO image found"
   @Input() description = "Default description"
   @Output() recipeRemoved = new EventEmitter<number>();
-
-
-  fav?: boolean
+  @Input() fav?: boolean
 
   http = inject(HttpClient);
   httpSub?: Subscription
 
-  ngOnInit() {
-    console.log("this.userId", this.userId)
-    console.log("this.recipeUserId", this.recipeUserId)
-  }
 
   removeRecipe() {
     this.httpSub = this.http.delete(`${environment.eliminationUrl}${(this.id)}`).subscribe({
@@ -56,11 +52,15 @@ export class RecipeComponent implements OnInit {
       recipeId: this.id
     }
     this.http.put("http://localhost:3000/fav", body).subscribe({
-      next: (res) => {
-        console.log(res)
+      next: () => {
+        console.log('Updated successfully')
       },
       error: err =>
         console.log(err)
     })
+  }
+
+  goToDetails() {
+
   }
 }

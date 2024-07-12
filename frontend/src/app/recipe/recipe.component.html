@@ -1,7 +1,7 @@
-<main>
+<main >
   <article>
     <header>
-      <span style="font-size: large; text-transform: capitalize;">{{ name }}</span>
+      <a style="font-size: large; text-transform: capitalize; text-decoration: none" [routerLink]="[id]">{{ name }}</a>
       <span (click)="removeRecipe()" *ngIf="authService.getCurrentUserId===recipeUserId"
             style="font-size: medium; margin-left: 16px; color: #05b5ff; cursor: pointer">remove</span>
     </header>
