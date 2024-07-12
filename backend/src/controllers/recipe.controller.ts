@@ -2,6 +2,7 @@ import {PrismaClient} from "@prisma/client";
 import express from "express";
 
 const recipeClient = new PrismaClient().recipe
+const favClient = new PrismaClient().fav
 
 // get all recipes
 export const getAllRecipes = async (req: express.Request, res: express.Response) => {
@@ -30,17 +31,39 @@ export const addNewRecipe = async (req: express.Request, res: express.Response) 
     }
 }
 
-export const delRecipeById = async (req: express.Request, res: express.Response) => {
-    try{
+export const getRecipeById = async (req: express.Request, res: express.Response) => {
+    try {
         const id = parseInt(req.params.id);
-        const removeRecipe = await recipeClient.delete({
+        const recipe = await recipeClient.findFirst({
             where:{
-                id: id
+                id
             }
         })
-        res.status(200).json({data: removeRecipe})
-
+        res.status(200).json({data: recipe})
     }catch (err){
         console.log(err)
+    }
+}
+
+export const delRecipeById = async (req: express.Request, res: express.Response) => {
+    try {
+        const id = parseInt(req.params.id);
+
+        await favClient.deleteMany({
+            where: {
+                recipeId: id
+            }
+        });
+
+        const removeRecipe = await recipeClient.delete({
+            where: {
+                id: id
+            }
+        });
+
+        res.status(200).json({ data: removeRecipe });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 }
