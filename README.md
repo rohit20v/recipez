@@ -17,6 +17,7 @@ Recipez is a web app built using Prisma for database management, SQLite as the d
 1. Use `git clone` to clone the repo and open it in your favorite IDE.
 2. Set up the backend:
    - Navigate to the backend folder and run `npm install`.
+   - Use `npx prisma migrate dev --name init` to run a migration to create your database tables with Prisma Migrate.
    - Start the backend server using `npm run dev`.
 3. Set up the frontend:
    - Navigate to the frontend folder and run `npm install`.
