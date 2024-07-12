@@ -1,0 +1,8 @@
+{
+  "routes": [
+    "/add-recipe",
+    "/home",
+    "/login",
+    "/sign-in"
+  ]
+}
