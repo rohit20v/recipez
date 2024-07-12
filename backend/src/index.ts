@@ -2,6 +2,7 @@ import express from 'express'
 import userRouter from "./routers/user.router";
 import cors from 'cors'
 import recipeRouter from "./routers/recipe.router";
+import favRouter from "./routers/favorite.router";
 
 const app = express()
 app.use(cors(
@@ -17,6 +18,7 @@ app.use(express.json())
 
 app.use("/user", userRouter)
 app.use('/recipe', recipeRouter)
+app.use('/fav', favRouter)
 
 app.get('/', (req: express.Request, res: express.Response) => {
     res.send('Welcome to the recipez!')

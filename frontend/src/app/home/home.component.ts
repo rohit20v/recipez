@@ -17,8 +17,10 @@ import {AuthService} from "../auth.service";
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  fav?: any
   recipes?: RecipeComponent[]
   recipeSub?: Subscription;
+  favSub?: Subscription;
 
   authService = inject(AuthService)
 
@@ -29,6 +31,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.recipeSub = this.http.get('http://localhost:3000/recipe/all').subscribe(
       (res: any) => {
         this.recipes = res.data
+        this.loadUserFavorites()
       },
       err => {
         console.log(err)
@@ -36,12 +39,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     )
   }
 
+  loadUserFavorites() {
+    const userId = this.authService.getCurrentUserId;
+    if (userId) {
+      this.favSub = this.http.get(`http://localhost:3000/fav/${userId}`).subscribe(
+        (res: any) => {
+          this.fav = res.data
+          console.log(this.fav[0].isFav)
+          return this.fav[0]
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
+  }
+
   ngOnDestroy() {
     if (this.recipeSub) {
       this.recipeSub.unsubscribe();
     }
+    if (this.favSub) {
+      this.favSub.unsubscribe();
+    }
   }
-
   removeRecipeFromList(id: number) {
     console.log(id)
     this.recipes = this.recipes?.filter(recipe => recipe.id !== id);
