@@ -3,7 +3,6 @@ import {NgIf} from "@angular/common";
 import {AuthService} from "../auth.service";
 import {HttpClient} from "@angular/common/http";
 import {Subscription} from "rxjs";
-import {environment} from "../../environments/environment";
 import {RouterLink} from "@angular/router";
 
 @Component({
@@ -27,14 +26,16 @@ export class RecipeComponent {
   @Input() image = "NO image found"
   @Input() description = "Default description"
   @Output() recipeRemoved = new EventEmitter<number>();
-  @Input() fav?: boolean
+  @Input() favArray?: boolean[]
+
+  fav?: boolean
 
   http = inject(HttpClient);
   httpSub?: Subscription
 
 
   removeRecipe() {
-    this.httpSub = this.http.delete(`${environment.eliminationUrl}${(this.id)}`).subscribe({
+    this.httpSub = this.http.delete(`http://localhost:3000/recipe/del/${(this.id)}`).subscribe({
       next: () => {
         this.recipeRemoved.emit(this.id);
       },
@@ -58,9 +59,5 @@ export class RecipeComponent {
       error: err =>
         console.log(err)
     })
-  }
-
-  goToDetails() {
-
   }
 }

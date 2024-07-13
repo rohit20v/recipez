@@ -7,6 +7,7 @@
                 [recipeUserId]="recipe.userId"
                 [userId]="authService.getCurrentUserId"
                 [id]="recipe.id"
+                [favArray]="fav"
                 (recipeRemoved)="removeRecipeFromList($event)" />
   </div>
   <ng-template #def>No recipe found</ng-template>

@@ -39,6 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     )
   }
 
+  //TODO fix the fav bug
   loadUserFavorites() {
     const userId = this.authService.getCurrentUserId;
     if (userId) {
@@ -46,7 +47,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         (res: any) => {
           this.fav = res.data
           console.log(this.fav[0].isFav)
-          return this.fav[0]
         },
         err => {
           console.log(err);
@@ -64,7 +64,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
   removeRecipeFromList(id: number) {
-    console.log(id)
     this.recipes = this.recipes?.filter(recipe => recipe.id !== id);
   }
 
